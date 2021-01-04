@@ -19,7 +19,6 @@ public class Seller {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
-	
 	@Column
 	private String name;
 
