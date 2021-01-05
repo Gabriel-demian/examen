@@ -1,5 +1,6 @@
 package ar.com.plug.examen.domain.mappers;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -16,21 +17,32 @@ public class ClientMapper implements Mapper<Client, ClientApi>{
 		
 		ClientApi dto = new ClientApi();
 		
+		dto.setId(entity.getId());
+		dto.setName(entity.getName());
 		
-		return null;
+		return dto;
 		
 	}
 
 	@Override
 	public Client fillEntity(Client entity, ClientApi dto) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		entity.setId(dto.getId());
+		entity.setName(dto.getName());
+		
+		return entity;
 	}
 
 	@Override
 	public List<ClientApi> getDto(Collection<Client> entities) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<ClientApi> dto = new ArrayList<>();
+		
+		for(Client client : entities) {
+			dto.add(getDto(client));
+		}
+		
+		return dto;
 	}
 
 }

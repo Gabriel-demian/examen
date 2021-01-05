@@ -10,12 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import ar.com.plug.examen.domain.enums.TransactionStatus;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
-@Getter
-@Setter
+@Data
 @Table
 public class Transaction {
 
@@ -34,12 +32,5 @@ public class Transaction {
 	private String status = TransactionStatus.PENDING.getCode();
 	@Column
 	private LocalDateTime date;
-	
-	@Override
-	public String toString() {
-		return "Transaction [id=" + id + ", productId=" + productId + ", clientId=" + clientId + ", sellerId="
-				+ sellerId + ", price=" + price + ", status=" + status + ", date=" + date + "]";
-	}
-	
 	
 }

@@ -1,5 +1,6 @@
 package ar.com.plug.examen.domain.mappers;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -13,20 +14,34 @@ public class SellerMapper implements Mapper<Seller, SellerApi>{
 
 	@Override
 	public SellerApi getDto(Seller entity) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		SellerApi dto = new SellerApi();
+		
+		dto.setId(entity.getId());
+		dto.setName(entity.getName());
+		
+		return dto;
 	}
 
 	@Override
 	public Seller fillEntity(Seller entity, SellerApi dto) {
-		// TODO Auto-generated method stub
-		return null;
+
+		entity.setId(dto.getId());
+		entity.setName(dto.getName());
+		
+		return entity;
 	}
 
 	@Override
 	public List<SellerApi> getDto(Collection<Seller> entities) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<SellerApi> dto = new ArrayList<>();
+		
+		for(Seller seller : entities) {
+			dto.add(getDto(seller));
+		}
+		
+		return dto;
 	}
 
 }

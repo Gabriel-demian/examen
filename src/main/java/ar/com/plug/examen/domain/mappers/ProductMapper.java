@@ -1,5 +1,6 @@
 package ar.com.plug.examen.domain.mappers;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -13,19 +14,38 @@ public class ProductMapper implements Mapper<Product, ProductApi>{
 
 	@Override
 	public ProductApi getDto(Product entity) {
+		
+		ProductApi dto = new ProductApi();
+		
+		dto.setId(entity.getId());
+		dto.setName(entity.getName());
+		dto.setDescription(entity.getDescription());
+		dto.setPrice(entity.getPrice());
+		
 		return null;
 	}
 
 	@Override
 	public Product fillEntity(Product entity, ProductApi dto) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		entity.setId(dto.getId());
+		entity.setName(dto.getName());
+		entity.setDescription(dto.getDescription());
+		entity.setPrice(dto.getPrice());
+		
+		return entity;
 	}
 
 	@Override
 	public List<ProductApi> getDto(Collection<Product> entities) {
-		// TODO Auto-generated method stub
-		return null;
+
+		List<ProductApi> dto = new ArrayList<>();
+		
+		for(Product product : entities) {
+			dto.add(getDto(product));
+		}
+		
+		return dto;
 	}
 
 }

@@ -7,12 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
-@Getter
-@Setter
+@Data
 @Table
 public class Client {
 	
@@ -21,10 +19,5 @@ public class Client {
 	private Long id;
 	@Column
 	private String name;
-
-	@Override
-	public String toString() {
-		return "Client [id=" + id + ", name=" + name + "]";
-	}
 	
 }
