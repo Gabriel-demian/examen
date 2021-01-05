@@ -20,5 +20,9 @@ public class ClientApi {
 	@NotNull
 	private String name;
 	
+	@Override
+	public String toString() {
+		return "ClientApi [id=" + id + ", name=" + name + "]";
+	}
 	
 }
