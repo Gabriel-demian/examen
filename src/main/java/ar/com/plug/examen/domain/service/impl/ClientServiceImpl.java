@@ -2,13 +2,19 @@ package ar.com.plug.examen.domain.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.com.plug.examen.app.api.ClientApi;
+import ar.com.plug.examen.domain.repositories.ClientRepository;
 import ar.com.plug.examen.domain.service.ClientService;
 
 @Service
 public class ClientServiceImpl implements ClientService{
+	
+	@Autowired
+	private ClientRepository clientRepository;
+	
 
 	@Override
 	public ClientApi createClient(ClientApi clientApi) {

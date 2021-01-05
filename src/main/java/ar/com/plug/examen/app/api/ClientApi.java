@@ -1,8 +1,5 @@
 package ar.com.plug.examen.app.api;
 
-
-import java.io.Serializable;
-
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -15,7 +12,7 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
-public class ClientApi implements Serializable{
+public class ClientApi{
 	
 	@NotNull
 	private Long id;
