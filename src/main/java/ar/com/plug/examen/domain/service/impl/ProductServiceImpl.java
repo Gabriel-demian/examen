@@ -6,7 +6,10 @@ import org.springframework.stereotype.Service;
 
 import ar.com.plug.examen.app.api.ProductApi;
 import ar.com.plug.examen.domain.service.ProductService;
+import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Service
 public class ProductServiceImpl implements ProductService{
 

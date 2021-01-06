@@ -12,9 +12,9 @@ import ar.com.plug.examen.domain.mappers.ClientMapper;
 import ar.com.plug.examen.domain.model.Client;
 import ar.com.plug.examen.domain.repositories.ClientRepository;
 import ar.com.plug.examen.domain.service.ClientService;
-import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j2;
 
-@Log
+@Log4j2
 @Service
 public class ClientServiceImpl implements ClientService{
 	
@@ -28,13 +28,13 @@ public class ClientServiceImpl implements ClientService{
 	public ClientApi createClient(ClientApi clientApi) {
 		
 		if(!clientApi.getName().isBlank()) {
-			log.severe("The name is required for the creation of the client. ");
+			log.error("The name is required for the creation of the client. ");
 			throw new BadRequestException("Mandatory data is missing: name");
 		}
 
 		Client client = clientRepository.save(clientMapper.fillEntity(new Client(), clientApi));
-		
-		log.severe("The client " + client.getId() +" was succesfully created.");
+
+		log.info("The client " + client.getId() +" was succesfully created.");
 		
 		return clientMapper.getDto(client);
 	}  
@@ -60,28 +60,29 @@ public class ClientServiceImpl implements ClientService{
 	public void removeClient(Long id) {
 		
 		if(!clientRepository.existsById(id)) {
-			log.severe("The cliente with the id:" + id + " does not exist.");
+			log.error("The cliente with the id:" + id + " does not exist.");
 			throw new NotFoundException("client with id " + id + " does not exist");
 		}
 		
 		clientRepository.deleteById(id);
 		
+		log.info("The client " + id +" was succesfully deleted.");
 	}
 
 	@Override
 	public ClientApi updateClient(Long id, ClientApi clientApi) {
 		
 		if(!clientRepository.existsById(id)) {
-			log.severe("The cliente with the id:" + id + " does not exist.");
+			log.error("The cliente with the id:" + id + " does not exist.");
 			throw new NotFoundException("client with id " + id + " does not exist");
 		}else if(!clientApi.getName().isBlank()) {
-			log.severe("The name is required for the creation of the client. ");
+			log.error("The name is required for the creation of the client. ");
 			throw new BadRequestException("Mandatory data is missing: name");
 		} 
 		
 		Client client = clientRepository.save(clientMapper.fillEntity(new Client(), clientApi));
 		
-		log.severe("The client " + client.getId() +" was succesfully updated.");
+		log.info("The client " + client.getId() +" was succesfully updated.");
 		
 		return clientMapper.getDto(client);
 	}
