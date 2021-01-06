@@ -81,6 +81,8 @@ public class ClientServiceImpl implements ClientService{
 		
 		Client client = clientRepository.save(clientMapper.fillEntity(new Client(), clientApi));
 		
+		log.severe("The client " + client.getId() +" was succesfully updated.");
+		
 		return clientMapper.getDto(client);
 	}
 
