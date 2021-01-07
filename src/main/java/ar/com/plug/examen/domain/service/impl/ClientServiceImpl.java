@@ -28,7 +28,9 @@ public class ClientServiceImpl implements ClientService{
 	private Validation validation;
 
 	/**
-	 * A consultar.
+	 * A consultar 
+	 * PairResult result = new PairResult(false, null);
+	 * result = validation.validateClient(clientApi);
 	 */
 	@Override
 	public ClientApi createClient(ClientApi clientApi) {
@@ -63,6 +65,10 @@ public class ClientServiceImpl implements ClientService{
 		
 		List<Client> clients = clientRepository.findAll();
 		
+		if(clients.isEmpty()) {
+			log.info("The list of clients is empty");
+		}
+		
 		return clientMapper.getDto(clients);
 	}
 
@@ -90,7 +96,12 @@ public class ClientServiceImpl implements ClientService{
 			throw new BadRequestException("Mandatory data is missing: name");
 		} 
 		
-		Client client = clientRepository.save(clientMapper.fillEntity(new Client(), clientApi));
+		Client client = clientRepository.findById(id)
+				.orElseThrow(() -> new NotFoundException("Client with the id:" + id + " was not found."));
+		
+		client.setName(clientApi.getName());
+		
+		client = clientRepository.save(clientMapper.fillEntity(new Client(), clientApi));
 		
 		log.info("The client " + id +" was succesfully updated.");
 		

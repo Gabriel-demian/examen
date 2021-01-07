@@ -38,14 +38,16 @@ public class Validation {
 		return new PairResult(valid, leyend);
 	}
 	
-	public String validateSeller(SellerApi seller) {
+	public PairResult validateSeller(SellerApi seller) {
 		String leyend = "";
+		boolean valid = true;
 		
 		if(seller.getName().isBlank()) {
 			leyend = "The name is required. ";
+			valid = false;
 		}
 		
-		return leyend;
+		return new PairResult(valid, leyend);
 	}
 	
 	public PairResult validateTransaction(TransactionApi transaction) {

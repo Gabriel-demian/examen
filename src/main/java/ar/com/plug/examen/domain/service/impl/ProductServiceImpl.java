@@ -62,7 +62,6 @@ public class ProductServiceImpl implements ProductService{
 		
 		if(products.isEmpty()) {
 			log.error("The product list is empty.");
-			throw new NotFoundException("The product list is empty.");
 		}
 		
 		return productMapper.getDto(products);
