@@ -14,7 +14,6 @@ import lombok.Setter;
 @Setter
 public class SellerApi {
 
-	@NotNull
 	private Long id;
 	@NotNull
 	private String name;

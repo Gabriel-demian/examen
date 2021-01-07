@@ -14,7 +14,6 @@ import lombok.Setter;
 @Setter
 public class ClientApi{
 	
-	@NotNull
 	private Long id;
 	@NotNull
 	private String name;

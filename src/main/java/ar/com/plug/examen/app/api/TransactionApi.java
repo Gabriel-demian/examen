@@ -16,7 +16,6 @@ import lombok.Setter;
 @Setter
 public class TransactionApi {
 
-	@NotNull
 	private Long id;
 	@NotNull
 	private Long productId;
