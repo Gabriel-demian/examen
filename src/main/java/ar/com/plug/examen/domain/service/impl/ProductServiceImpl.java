@@ -47,7 +47,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public ProductApi getProduct(Long id) {
+	public ProductApi getProductById(Long id) {
 		
 		Product product = productRepository.findById(id)
 				.orElseThrow(() -> new NotFoundException("Product with the id:" + id + " was not found."));
