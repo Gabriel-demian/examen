@@ -37,17 +37,6 @@ public class TransactionController {
 		
 	}
 	
-	/**
-	 * Get a transaction searching by the transaction id.
-	 * @param Transaction id
-	 * @return ResponseEntity<TransactionApi>
-	 */
-	@GetMapping(path = "/{id}")
-	public ResponseEntity<TransactionApi> getTransaction(Long id){
-		
-		return new ResponseEntity<>(transactionService.getTransactionById(id), HttpStatus.OK);
-		
-	}
 	
 	/**
 	 * List all the transactions. 
@@ -61,13 +50,25 @@ public class TransactionController {
 	}
 	
 	/**
+	 * Get a transaction searching by the seller id.
+	 * @param id
+	 * @return
+	 */
+	@GetMapping(path = "/{id}")
+	public ResponseEntity<List<TransactionApi>> getTransactionBySellerId(Long id){
+		
+		return new ResponseEntity<>(transactionService.getTransactionBySellerId(id), HttpStatus.OK);
+		
+	}
+	
+	/**
 	 * This method will update the transaction status.
 	 * @param Transaction id
 	 * @param validation
 	 * @return ResponseEntity<TransactionApi>
 	 */
 	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<TransactionApi> updateTransaction(@RequestParam Long id, @RequestBody String validation){
+	public ResponseEntity<TransactionApi> updateTransaction(@RequestParam Long id, @RequestParam String validation){
 		
 		return new ResponseEntity<>(transactionService.approveTransaction(id, validation), HttpStatus.CREATED);
 		

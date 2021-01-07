@@ -10,6 +10,8 @@ public interface TransactionService {
 
 	public TransactionApi getTransactionById(Long id);
 	
+	public List<TransactionApi> getTransactionBySellerId(Long id);
+	
 	public List<TransactionApi> listAllTransactions();
 	
 	public TransactionApi approveTransaction(Long id, String validation);

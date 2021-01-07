@@ -75,7 +75,19 @@ public class TransactionServiceImpl implements TransactionService{
 		return transactionMapper.getDto(transactions);
 		
 	}
-
+	
+	@Override
+	public List<TransactionApi> getTransactionBySellerId(Long id) {
+		
+		List<Transaction> transactions = transactionRepository.findBySellerId(id);
+		
+		if(transactions.isEmpty()) {
+			log.info("The list of transactions is empty");
+		}
+		
+		return transactionMapper.getDto(transactions);
+		
+	}
 
 	@Override
 	public TransactionApi approveTransaction(Long id, String validation) {
