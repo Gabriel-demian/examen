@@ -6,14 +6,14 @@ import ar.com.plug.examen.app.api.ClientApi;
 
 public interface ClientService {
 	
-	ClientApi createClient(ClientApi clientApi);
+	public ClientApi createClient(ClientApi clientApi);
 
-	ClientApi getClientById(Long id);
+	public ClientApi getClientById(Long id);
 	
-	List<ClientApi> listAllClients();
+	public List<ClientApi> listAllClients();
 	
 	void removeClient(Long id);
 	
-	ClientApi updateClient(Long id, ClientApi clientApi);
+	public ClientApi updateClient(Long id, ClientApi clientApi);
 	
 }

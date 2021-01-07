@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import ar.com.plug.examen.domain.enums.TransactionStatus;
 import lombok.Data;
 
 @Entity
@@ -29,7 +28,7 @@ public class Transaction {
 	@Column
 	private Double price;
 	@Column
-	private String status = TransactionStatus.PENDING.getCode();
+	private String status;
 	@Column
 	private LocalDateTime date;
 	

@@ -6,12 +6,12 @@ import ar.com.plug.examen.app.api.TransactionApi;
 
 public interface TransactionService {
 	
-	TransactionApi createTransaction(TransactionApi transactionApi);
+	public TransactionApi createTransaction(TransactionApi transactionApi);
 
-	TransactionApi getTransaction(Long id);
+	public TransactionApi getTransaction(Long id);
 	
-	List<TransactionApi> listAllTransactions(Long sellerId);
+	public List<TransactionApi> listAllTransactions();
 	
-	TransactionApi approveTransaction(Long id, String validation);
+	public TransactionApi approveTransaction(Long id, String validation);
 	
 }

@@ -6,14 +6,14 @@ import ar.com.plug.examen.app.api.ProductApi;
 
 public interface ProductService {
 	
-	ProductApi createProduct(ProductApi productApi);
+	public ProductApi createProduct(ProductApi productApi);
 
-	ProductApi getProductById(Long id);
+	public ProductApi getProductById(Long id);
 	
-	List<ProductApi> listAllProducts();
+	public List<ProductApi> listAllProducts();
 	
 	void removeProduct(Long id);
 	
-	ProductApi updateProduct(Long id, ProductApi productApi);
+	public ProductApi updateProduct(Long id, ProductApi productApi);
 
 }

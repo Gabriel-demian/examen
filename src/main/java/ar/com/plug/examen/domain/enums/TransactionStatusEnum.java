@@ -1,6 +1,6 @@
 package ar.com.plug.examen.domain.enums;
 
-public enum TransactionStatus {
+public enum TransactionStatusEnum {
 	
 	
 	PENDING("pnd"),
@@ -8,7 +8,7 @@ public enum TransactionStatus {
 	
 	private String code;
 	
-	TransactionStatus(String code){
+	TransactionStatusEnum(String code){
 		this.code= code;
 	}
 

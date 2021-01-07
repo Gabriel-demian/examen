@@ -6,14 +6,14 @@ import ar.com.plug.examen.app.api.SellerApi;
 
 public interface SellerService {
 	
-	SellerApi createSeller(SellerApi sellerApi);
+	public SellerApi createSeller(SellerApi sellerApi);
 
-	SellerApi getSeller(Long id);
+	public SellerApi getSellerById(Long id);
 	
-	List<SellerApi> listAllSellers();
+	public List<SellerApi> listAllSellers();
 	
 	void removeSeller(Long id);
 	
-	SellerApi updateSeller(Long id, SellerApi sellerApi);
+	public SellerApi updateSeller(Long id, SellerApi sellerApi);
 
 }

@@ -37,7 +37,7 @@ public class SellerServiceImpl implements SellerService {
 		result = validation.validateSeller(sellerApi);
 		
 		if(!result.isValid()) {
-			log.error(result.getLeyend() + " for the creation of the seller. ");
+			log.error("Mandatory data is missing: " + result.getLeyend());
 			throw new BadRequestException("Mandatory data is missing: " + result.getLeyend());
 		}
 
@@ -50,10 +50,10 @@ public class SellerServiceImpl implements SellerService {
 	}
 
 	@Override
-	public SellerApi getSeller(Long id) {
+	public SellerApi getSellerById(Long id) {
 		
 		Seller seller = sellerRepository.findById(id)
-				.orElseThrow(() -> new NotFoundException("Client with the id:" + id + " was not found."));
+				.orElseThrow(() -> new NotFoundException("The seller with the id:" + id + " was not found."));
 		
 		return sellerMapper.getDto(seller);
 	}
@@ -101,7 +101,7 @@ public class SellerServiceImpl implements SellerService {
 		} 
 		
 		Seller seller = sellerRepository.findById(id)
-				.orElseThrow(() -> new NotFoundException("Client with the id:" + id + " was not found."));
+				.orElseThrow(() -> new NotFoundException("The seller with the id:" + id + " was not found."));
 		
 		seller.setName(sellerApi.getName());
 		

@@ -58,7 +58,7 @@ public class Validation {
 		if(transaction.getClientId() != null) {
 			leyend = "The client id is required, ";
 			valid = false;
-		}else if(transaction.getPrice().isNaN()) {
+		}else if(transaction.getPrice().isNaN() || transaction.getPrice() == null || transaction.getPrice() <= 0) {
 			leyend = leyend + "The price is required or must be a number, ";
 			valid = false;
 		}else if(transaction.getProductId() != null) {
