@@ -8,7 +8,7 @@ public interface TransactionService {
 	
 	public TransactionApi createTransaction(TransactionApi transactionApi);
 
-	public TransactionApi getTransaction(Long id);
+	public TransactionApi getTransactionById(Long id);
 	
 	public List<TransactionApi> listAllTransactions();
 	

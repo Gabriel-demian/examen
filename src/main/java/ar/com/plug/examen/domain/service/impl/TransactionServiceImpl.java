@@ -55,7 +55,7 @@ public class TransactionServiceImpl implements TransactionService{
 	}
 
 	@Override
-	public TransactionApi getTransaction(Long id) {
+	public TransactionApi getTransactionById(Long id) {
 		
 		Transaction transaction = transactionRepository.findById(id)
 				.orElseThrow(() -> new NotFoundException("The transaction with the id:" + id + " was not found."));
