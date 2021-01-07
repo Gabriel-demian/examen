@@ -50,7 +50,7 @@ public class ClientServiceImpl implements ClientService{
 	}  
 
 	@Override
-	public ClientApi getClient(Long id) {
+	public ClientApi getClientById(Long id) {
 		
 		Client client = clientRepository.findById(id)
 				.orElseThrow(() -> new NotFoundException("Client with the id:" + id + " was not found."));
@@ -92,7 +92,7 @@ public class ClientServiceImpl implements ClientService{
 		
 		Client client = clientRepository.save(clientMapper.fillEntity(new Client(), clientApi));
 		
-		log.info("The client " + client.getId() +" was succesfully updated.");
+		log.info("The client " + id +" was succesfully updated.");
 		
 		return clientMapper.getDto(client);
 	}

@@ -8,7 +8,7 @@ public interface ClientService {
 	
 	ClientApi createClient(ClientApi clientApi);
 
-	ClientApi getClient(Long id);
+	ClientApi getClientById(Long id);
 	
 	List<ClientApi> listAllClients();
 	
