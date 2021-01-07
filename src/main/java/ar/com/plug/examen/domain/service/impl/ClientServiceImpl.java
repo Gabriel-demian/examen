@@ -12,6 +12,8 @@ import ar.com.plug.examen.domain.mappers.ClientMapper;
 import ar.com.plug.examen.domain.model.Client;
 import ar.com.plug.examen.domain.repositories.ClientRepository;
 import ar.com.plug.examen.domain.service.ClientService;
+import ar.com.plug.examen.domain.validations.PairResult;
+import ar.com.plug.examen.domain.validations.Validation;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -22,14 +24,22 @@ public class ClientServiceImpl implements ClientService{
 	private ClientRepository clientRepository;
 	@Autowired
 	private ClientMapper clientMapper;
+	@Autowired
+	private Validation validation;
 
-	
+	/**
+	 * A consultar.
+	 */
 	@Override
 	public ClientApi createClient(ClientApi clientApi) {
 		
-		if(!clientApi.getName().isBlank()) {
-			log.error("The name is required for the creation of the client. ");
-			throw new BadRequestException("Mandatory data is missing: name");
+		PairResult result = new PairResult(false, null);
+		
+		result = validation.validateClient(clientApi);
+		
+		if(!result.isValid()) {
+			log.error(result.getLeyend() + " for the creation of the client. ");
+			throw new BadRequestException("Mandatory data is missing: " + result.getLeyend());
 		}
 
 		Client client = clientRepository.save(clientMapper.fillEntity(new Client(), clientApi));
@@ -43,7 +53,7 @@ public class ClientServiceImpl implements ClientService{
 	public ClientApi getClient(Long id) {
 		
 		Client client = clientRepository.findById(id)
-				.orElseThrow(() -> new NotFoundException("Client with the id: " + id + " was not found."));
+				.orElseThrow(() -> new NotFoundException("Client with the id:" + id + " was not found."));
 		
 		return clientMapper.getDto(client);
 	}
@@ -51,9 +61,9 @@ public class ClientServiceImpl implements ClientService{
 	@Override
 	public List<ClientApi> listAllClients() {
 		
-		List<Client> client = clientRepository.findAll();
+		List<Client> clients = clientRepository.findAll();
 		
-		return clientMapper.getDto(client);
+		return clientMapper.getDto(clients);
 	}
 
 	@Override
@@ -61,7 +71,7 @@ public class ClientServiceImpl implements ClientService{
 		
 		if(!clientRepository.existsById(id)) {
 			log.error("The cliente with the id:" + id + " does not exist.");
-			throw new NotFoundException("client with id " + id + " does not exist");
+			throw new NotFoundException("The client with id " + id + " does not exist");
 		}
 		
 		clientRepository.deleteById(id);
