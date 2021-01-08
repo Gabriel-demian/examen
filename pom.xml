@@ -108,6 +108,11 @@
 		    <artifactId>validation-api</artifactId>
 		    <version>${javax.validation.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 		<!-- ********************************************************** -->
 		
         <dependency>

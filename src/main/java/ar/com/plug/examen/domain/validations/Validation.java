@@ -1,10 +1,13 @@
 package ar.com.plug.examen.domain.validations;
 
+import org.springframework.stereotype.Service;
+
 import ar.com.plug.examen.app.api.ClientApi;
 import ar.com.plug.examen.app.api.ProductApi;
 import ar.com.plug.examen.app.api.SellerApi;
 import ar.com.plug.examen.app.api.TransactionApi;
 
+@Service
 public class Validation {
 	
 	public PairResult validateProduct(ProductApi product) {

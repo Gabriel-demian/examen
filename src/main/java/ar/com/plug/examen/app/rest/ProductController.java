@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,7 +34,7 @@ public class ProductController {
 	}
 	
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<ProductApi> getProduct(Long id){
+	public ResponseEntity<ProductApi> getProduct(@PathVariable Long id){
 		
 		return new ResponseEntity<>(productService.getProductById(id), HttpStatus.OK);
 		
@@ -48,7 +49,7 @@ public class ProductController {
 	
 	@SuppressWarnings("rawtypes")
 	@DeleteMapping("/{id}")
-	public ResponseEntity removeProduct(Long id) {
+	public ResponseEntity removeProduct(@PathVariable Long id) {
 		
 		productService.removeProduct(id);
 		

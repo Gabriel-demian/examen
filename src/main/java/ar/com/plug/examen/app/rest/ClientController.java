@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,7 +34,7 @@ public class ClientController {
 	}
 	
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<ClientApi> getClient(Long id){
+	public ResponseEntity<ClientApi> getClient(@PathVariable Long id){
 		
 		return new ResponseEntity<>(clientService.getClientById(id), HttpStatus.OK);
 		
@@ -48,7 +49,7 @@ public class ClientController {
 	
 	@SuppressWarnings("rawtypes")
 	@DeleteMapping("/{id}")
-	public ResponseEntity removeClient(Long id) {
+	public ResponseEntity removeClient(@PathVariable Long id) {
 		
 		clientService.removeClient(id);
 		

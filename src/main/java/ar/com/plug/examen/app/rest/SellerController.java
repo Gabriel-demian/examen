@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,7 +34,7 @@ public class SellerController {
 	}
 	
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<SellerApi> getSeller(Long id){
+	public ResponseEntity<SellerApi> getSeller(@PathVariable Long id){
 		
 		return new ResponseEntity<>(sellerService.getSellerById(id), HttpStatus.OK);
 		
@@ -48,7 +49,7 @@ public class SellerController {
 	
 	@SuppressWarnings("rawtypes")
 	@DeleteMapping("/{id}")
-	public ResponseEntity removeSeller(Long id) {
+	public ResponseEntity removeSeller(@PathVariable Long id) {
 		
 		sellerService.removeSeller(id);
 		
