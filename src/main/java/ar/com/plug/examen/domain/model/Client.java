@@ -16,8 +16,9 @@ public class Client {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name="client_id")
 	private Long id;
-	@Column
+	@Column(name="client_name")
 	private String name;
 	
 }

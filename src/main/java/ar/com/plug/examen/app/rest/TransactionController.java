@@ -26,7 +26,7 @@ public class TransactionController {
 	private TransactionService transactionService;
 	
 	/**
-	 * Create a new Transaction.
+	 * Create a new Transaction. The creation of a transaction depends of the existence of the seller, client and product. 
 	 * @param TransactionApi
 	 * @return ResponseEntity<TransactionApi>
 	 */

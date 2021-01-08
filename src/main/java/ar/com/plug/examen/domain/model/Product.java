@@ -15,13 +15,14 @@ import lombok.Data;
 public class Product {
 	
 	@Id
+	@Column(name = "product_id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
-	@Column
+	@Column(name = "product_name")
 	private String name;
-	@Column
+	@Column(name = "product_description")
 	private String description;
-	@Column
+	@Column(name = "product_price")
 	private Double price;
 
 	@Override

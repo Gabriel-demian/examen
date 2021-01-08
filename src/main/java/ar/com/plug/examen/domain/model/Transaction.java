@@ -17,19 +17,20 @@ import lombok.Data;
 public class Transaction {
 
 	@Id
+	@Column(name = "transaction_id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
-	@Column
+	@Column(name = "transaction_productId")
 	private Long productId;
-	@Column
+	@Column(name = "transaction_clientId")
 	private Long clientId;
-	@Column
+	@Column(name = "transaction_sellerId")
 	private Long sellerId;
-	@Column
+	@Column(name = "transaction_price")
 	private Double price;
-	@Column
+	@Column(name = "transaction_status")
 	private String status;
-	@Column
+	@Column(name = "transaction_date")
 	private LocalDateTime date;
 	
 }
