@@ -1,5 +1,7 @@
 # REST Test
 
+# Swagger: http://localhost:8080/payments/swagger-ui.html#/
+
 La prueba consiste en agregar nueva funcionalidad a la API REST que corre en este repositorio. Para eso vamos a guiarnos por los siguientes puntos:
 
 1. Hacer un fork del repositorio, crear un nuevo branch y realizar las tareas enunciadas a continuación.
