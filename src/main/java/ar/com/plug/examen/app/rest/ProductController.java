@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.plug.examen.app.api.ProductApi;
@@ -58,7 +57,7 @@ public class ProductController {
 	}
 	
 	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ProductApi> updateProduct(@RequestParam Long id, @RequestBody ProductApi ProductApi){
+	public ResponseEntity<ProductApi> updateProduct(@PathVariable Long id, @RequestBody ProductApi ProductApi){
 		
 		return new ResponseEntity<>(productService.updateProduct(id, ProductApi), HttpStatus.CREATED);
 		

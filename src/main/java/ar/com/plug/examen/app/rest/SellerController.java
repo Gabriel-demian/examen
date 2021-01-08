@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.plug.examen.app.api.SellerApi;
@@ -58,7 +57,7 @@ public class SellerController {
 	}
 	
 	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<SellerApi> updateSeller(@RequestParam Long id, @RequestBody SellerApi sellerApi){
+	public ResponseEntity<SellerApi> updateSeller(@PathVariable Long id, @RequestBody SellerApi sellerApi){
 		
 		return new ResponseEntity<>(sellerService.updateSeller(id, sellerApi), HttpStatus.CREATED);
 		

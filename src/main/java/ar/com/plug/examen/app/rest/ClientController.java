@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.plug.examen.app.api.ClientApi;
@@ -58,7 +57,7 @@ public class ClientController {
 	}
 	
 	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ClientApi> updateClient(@RequestParam Long id, @RequestBody ClientApi clientApi){
+	public ResponseEntity<ClientApi> updateClient(@PathVariable Long id, @RequestBody ClientApi clientApi){
 		
 		return new ResponseEntity<>(clientService.updateClient(id, clientApi), HttpStatus.CREATED);
 		

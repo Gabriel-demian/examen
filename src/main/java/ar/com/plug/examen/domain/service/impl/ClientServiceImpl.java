@@ -27,11 +27,6 @@ public class ClientServiceImpl implements ClientService{
 	@Autowired
 	private Validation validation;
 
-	/**
-	 * A consultar 
-	 * PairResult result = new PairResult(false, null);
-	 * result = validation.validateClient(clientApi);
-	 */
 	@Override
 	public ClientApi createClient(ClientApi clientApi) {
 		
@@ -91,14 +86,18 @@ public class ClientServiceImpl implements ClientService{
 		if(!clientRepository.existsById(id)) {
 			log.error("The cliente with the id:" + id + " does not exist.");
 			throw new NotFoundException("client with id " + id + " does not exist");
-		}else if(!clientApi.getName().isBlank()) {
-			log.error("The name is required for the creation of the client. ");
-			throw new BadRequestException("Mandatory data is missing: name");
-		} 
+		}else if(clientApi.getId() != id) {
+			log.error("The ids do not match. client id:" + clientApi.getId()  + "!=  param id:" + id);
+			throw new BadRequestException("The ids do not match. client id:" + clientApi.getId()  + "!=  param id:" + id);
+		}else if(clientApi.getId() == null || clientApi.getId() <= 0) {
+			log.error("The id is required for the update of the client. ");
+			throw new BadRequestException("Mandatory data is missing: id");
+		}
 		
 		Client client = clientRepository.findById(id)
 				.orElseThrow(() -> new NotFoundException("Client with the id:" + id + " was not found."));
 		
+		client.setId(id);
 		client.setName(clientApi.getName());
 		
 		client = clientRepository.save(clientMapper.fillEntity(new Client(), clientApi));
