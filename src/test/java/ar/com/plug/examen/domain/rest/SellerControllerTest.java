@@ -96,6 +96,7 @@ public class SellerControllerTest {
     @Test
     public void updateSeller() throws Exception {
     	SellerApi sellerApi = new SellerApi();
+    	sellerApi.setId(1L);
     	sellerApi.setName("test Name");
     	ResponseEntity<SellerApi> response = testRestTemplate.postForEntity(URL, sellerApi, SellerApi.class);
     	assertEquals(HttpStatus.CREATED, response.getStatusCode());
@@ -104,7 +105,7 @@ public class SellerControllerTest {
                 HttpMethod.PUT,
                 new HttpEntity<>(sellerApi),
                 SellerApi.class);
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
         assertEquals(sellerApi.getName(), responseEntity.getBody().getName());
     	
     }

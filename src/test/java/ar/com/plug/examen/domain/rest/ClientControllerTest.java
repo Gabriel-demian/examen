@@ -94,6 +94,7 @@ public class ClientControllerTest {
     @Test
     public void updateClient() throws Exception {
     	ClientApi clientApi = new ClientApi();
+    	clientApi.setId(1L);
     	clientApi.setName("test Name");
     	ResponseEntity<ClientApi> response = testRestTemplate.postForEntity(URL, clientApi, ClientApi.class);
     	assertEquals(HttpStatus.CREATED, response.getStatusCode());
@@ -102,7 +103,7 @@ public class ClientControllerTest {
                 HttpMethod.PUT,
                 new HttpEntity<>(clientApi),
                 ClientApi.class);
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
         assertEquals(clientApi.getName(), responseEntity.getBody().getName());
     	
     }
