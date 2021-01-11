@@ -1,4 +1,4 @@
-package ar.com.plug.examen.domain.rest;
+package ar.com.plug.examen.app.integration.rest;
 
 import static org.junit.Assert.assertEquals;
 
@@ -27,11 +27,8 @@ public class ClientControllerTest {
 	
 	@Autowired
     private TestRestTemplate testRestTemplate;
-    private final String URL = "/clients";
+    private final String URL = "/client";
     
-    @Autowired
-    WebApplicationContext webApplicationContext;
-
     
     @Test
     public void createClient() {
@@ -73,7 +70,7 @@ public class ClientControllerTest {
     	assertEquals(HttpStatus.CREATED, response2.getStatusCode());
     	
     	
-        ResponseEntity<List> responseEntity = testRestTemplate.getForEntity("/clients", List.class);
+        ResponseEntity<List> responseEntity = testRestTemplate.getForEntity(URL, List.class);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
     }
     
@@ -99,12 +96,16 @@ public class ClientControllerTest {
     	ResponseEntity<ClientApi> response = testRestTemplate.postForEntity(URL, clientApi, ClientApi.class);
     	assertEquals(HttpStatus.CREATED, response.getStatusCode());
     	
-    	ResponseEntity<ClientApi> responseEntity = testRestTemplate.exchange(URL + "/" + response.getBody().getId(),
+    	ResponseEntity<ClientApi> getResponse = testRestTemplate.postForEntity(URL, clientApi, ClientApi.class);
+    	
+    	getResponse.getBody().setName("Updated Name");
+    	
+    	ResponseEntity<ClientApi> responseEntity = testRestTemplate.exchange(URL + "/" + getResponse.getBody().getId(),
                 HttpMethod.PUT,
-                new HttpEntity<>(clientApi),
+                new HttpEntity<>(getResponse),
                 ClientApi.class);
         assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
-        assertEquals(clientApi.getName(), responseEntity.getBody().getName());
+        assertEquals(getResponse.getBody().getName(), responseEntity.getBody().getName());
     	
     }
     

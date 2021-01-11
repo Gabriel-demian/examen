@@ -19,7 +19,7 @@ import ar.com.plug.examen.app.api.ClientApi;
 import ar.com.plug.examen.domain.service.ClientService;
 
 @RestController
-@RequestMapping(path="/clients", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path="/client", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ClientController {
 
 	@Autowired

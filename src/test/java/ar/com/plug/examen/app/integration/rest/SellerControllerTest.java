@@ -1,4 +1,4 @@
-package ar.com.plug.examen.domain.rest;
+package ar.com.plug.examen.app.integration.rest;
 
 import static org.junit.Assert.assertEquals;
 
@@ -42,7 +42,7 @@ public class SellerControllerTest {
     	sellerApi.setName("test Name");
     	
     	ResponseEntity<SellerApi> response = testRestTemplate.postForEntity(URL, sellerApi, SellerApi.class);
-    	System.out.println(response.getStatusCode());
+    	
     	assertEquals(HttpStatus.CREATED, response.getStatusCode());
     	assertEquals(sellerApi.getName(), response.getBody().getName());
     }
