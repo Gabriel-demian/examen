@@ -100,6 +100,8 @@ public class SellerServiceImpl implements SellerService {
 			throw new BadRequestException("Mandatory data is missing: " + result.getLeyend());
 		} 
 		
+		validation.validateId(id, sellerApi.getId());
+		
 		Seller seller = sellerRepository.findById(id)
 				.orElseThrow(() -> new NotFoundException("The seller with the id:" + id + " was not found."));
 		

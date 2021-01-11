@@ -6,7 +6,10 @@ import ar.com.plug.examen.app.api.ClientApi;
 import ar.com.plug.examen.app.api.ProductApi;
 import ar.com.plug.examen.app.api.SellerApi;
 import ar.com.plug.examen.app.api.TransactionApi;
+import ar.com.plug.examen.domain.execptions.BadRequestException;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Service
 public class Validation {
 	
@@ -76,6 +79,16 @@ public class Validation {
 		}
 		
 		return new PairResult(valid, leyend);
+	}
+	
+	public void validateId(Long firstId, Long secondId) {
+		if(secondId != firstId) {
+			log.error("The ids do not match. wanted id:" + secondId  + "!=  param id:" + firstId);
+			throw new BadRequestException("The ids do not match. wanted id:" + secondId  + "!=  param id:" + firstId);
+		}else if(secondId == null || secondId <= 0) {
+			log.error("The id is required for the update. ");
+			throw new BadRequestException("Mandatory data is missing: id");
+		}
 	}
 	
 }

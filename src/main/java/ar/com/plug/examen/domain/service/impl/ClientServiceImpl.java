@@ -86,13 +86,9 @@ public class ClientServiceImpl implements ClientService{
 		if(!clientRepository.existsById(id)) {
 			log.error("The cliente with the id:" + id + " does not exist.");
 			throw new NotFoundException("client with id " + id + " does not exist");
-		}else if(clientApi.getId() != id) {
-			log.error("The ids do not match. client id:" + clientApi.getId()  + "!=  param id:" + id);
-			throw new BadRequestException("The ids do not match. client id:" + clientApi.getId()  + "!=  param id:" + id);
-		}else if(clientApi.getId() == null || clientApi.getId() <= 0) {
-			log.error("The id is required for the update of the client. ");
-			throw new BadRequestException("Mandatory data is missing: id");
-		}
+		} 
+		
+		validation.validateId(id, clientApi.getId());
 		
 		Client client = clientRepository.findById(id)
 				.orElseThrow(() -> new NotFoundException("Client with the id:" + id + " was not found."));
@@ -106,5 +102,7 @@ public class ClientServiceImpl implements ClientService{
 		
 		return clientMapper.getDto(client);
 	}
+
+	
 
 }

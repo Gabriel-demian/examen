@@ -96,6 +96,8 @@ public class ProductServiceImpl implements ProductService{
 			throw new BadRequestException("Mandatory data is missing: name");
 		}
 		
+		validation.validateId(id, productApi.getId());
+		
 		Product prod = new Product();
 				
 		prod = productRepository.findById(id)
