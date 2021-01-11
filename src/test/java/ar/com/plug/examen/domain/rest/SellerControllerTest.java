@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,24 +13,26 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.context.WebApplicationContext;
 
+import ar.com.plug.examen.Application;
 import ar.com.plug.examen.app.api.SellerApi;
 
 
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@ContextConfiguration(classes = Application.class)
 public class SellerControllerTest {
 	
 	@Autowired
     private TestRestTemplate testRestTemplate;
-    private final String URL = "/sellers";
+    private final String URL = "/seller";
     
-    protected MockMvc mvc;
     @Autowired
     WebApplicationContext webApplicationContext;
+
 
     
     @Test
@@ -40,7 +42,7 @@ public class SellerControllerTest {
     	sellerApi.setName("test Name");
     	
     	ResponseEntity<SellerApi> response = testRestTemplate.postForEntity(URL, sellerApi, SellerApi.class);
-    	
+    	System.out.println(response.getStatusCode());
     	assertEquals(HttpStatus.CREATED, response.getStatusCode());
     	assertEquals(sellerApi.getName(), response.getBody().getName());
     }
@@ -73,7 +75,7 @@ public class SellerControllerTest {
     	assertEquals(HttpStatus.CREATED, response2.getStatusCode());
     	
     	
-        ResponseEntity<List> responseEntity = testRestTemplate.getForEntity("/sellers", List.class);
+        ResponseEntity<List> responseEntity = testRestTemplate.getForEntity(URL, List.class);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
     }
     
